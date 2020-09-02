@@ -1,0 +1,47 @@
+logging:
+  level:
+    org:
+      hibernate:
+        engine:
+          jdbc:
+            env:
+              internal:
+                LobCreatorBuilderImpl: error
+      springframework:
+        jdbc:
+          datasource:
+            init:
+              ScriptUtils: debug
+management:
+  security:
+    enabled: false
+
+server:
+  ssl:
+    key-store: classpath:keystore.jks
+    key-store-password: password
+    key-store-type: JKS
+    key-alias: lakehue
+    key-password: password
+  port: 8080
+---
+spring:
+  profiles: dev
+environment: dev
+server:
+  port:8000
+---
+spring:
+  profiles: test
+  datasource:
+    password: postgres
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/dev
+    username: postgres
+    jpa:
+      database: postgresql
+      hibernate:
+        dll-auto: none
+environment: test
+server:
+  port:9000
