@@ -45,3 +45,8 @@ spring:
 environment: test
 server:
   port:9000
+amqp:
+  queue:
+    name: room-cleaner
+  exchange:
+    name: lakehue-room-exchange
